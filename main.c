@@ -203,7 +203,7 @@ void additional(char** sentence, int CounterSent) {
         }
 
         if (!changed) {
-            printf("\e[4m%s\e[0m\n", sentence[i]);
+            printf("\033[4m%s\033[0m\n", sentence[i]);
         } else {
 
         }
