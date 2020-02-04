@@ -214,6 +214,11 @@ void additional(char** sentence, int CounterSent) {
 
         if (!position) {
             printf("\033[4m%s\033[0m\n", sentence[i]);
+        } else {
+            for (int m = position; m < strlen(sentence[i]); ++m) {
+                printf("%c", sentence[i][m]);
+            }
+            printf("\n");
         }
     }
 }
