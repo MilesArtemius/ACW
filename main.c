@@ -179,16 +179,21 @@ void ispalindrom(char** sentence, int CounterSent){
 
 void additional(char** sentence, int CounterSent) {
     char voc [12] = "aeiouyAEIOUY";
-    int changed = 0;
+    int position;
 
     for (int i = 0; i < CounterSent; ++i) {
-        changed = 0;
+        position = 0;
         for (int j = 0; j < strlen(sentence[i]); ++j) {
             char letter = sentence[i][j];
             int length = strlen(sentence[i]);
             for (int k = 0; k < 12; ++k) {
                 if (letter == voc[k]) {
-                    changed = 1;
+
+                    for (int m = position; m < j; ++m) {
+                        printf("%c", sentence[i][m]);
+                    }
+                    position = j;
+
                     sentence[i] = realloc(sentence[i], strlen(sentence[i]) + 4);
                     sentence[i][length+3] = '\0';
                     for (int l = length; l >= j; l--) {
@@ -198,14 +203,17 @@ void additional(char** sentence, int CounterSent) {
                     sentence[i][j+1] = ',';
                     sentence[i][j+2] = ' ';
                     sentence[i][j+3] = 'G';
+
+                    for (int m = position; m < position + 3; ++m) {
+                        printf("\033[4m%c\033[0m", sentence[i][m]);
+                    }
+                    position = j+3;
                 }
             }
         }
 
-        if (!changed) {
+        if (!position) {
             printf("\033[4m%s\033[0m\n", sentence[i]);
-        } else {
-
         }
     }
 }
